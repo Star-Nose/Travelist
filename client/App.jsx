@@ -1,11 +1,11 @@
 import React from 'react';
 
-// import Main from './containers/MainContainer.jsx';
+import MainContainer from './containers/MainContainer.jsx';
 
 const App = () => (
   <div>
     Hello from App.jsx!
-    {/* <Main /> */}
+    <MainContainer />
   </div>
 );
 
