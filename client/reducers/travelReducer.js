@@ -1,4 +1,5 @@
 // import our actiontypes from constants/actionsTypes;
+import * as types from '../constants/actionTypes';
 
 const initialState = {
   count: 0,
@@ -6,9 +7,10 @@ const initialState = {
 
 const travelReducer = (state = initialState, action) => {
   switch (action.type) {
-    case type.ADD_COUNT:
-      // some functionality increasing count by 1
-      return state;
+    case types.ADD_COUNT: {
+      const count = state.count + 1;
+      return { ...state, count };
+    }
     default:
       return state;
   }
