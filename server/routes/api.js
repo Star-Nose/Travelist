@@ -5,6 +5,6 @@ const formController = require('../controllers/formController.js');
 
 router.post('/user-validation',
   formController.validateUser,
-  (req, res) => res.sendStatus(200));
+  (req, res) => res.redirect('/main'));
 
 module.exports = router;

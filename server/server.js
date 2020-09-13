@@ -33,8 +33,10 @@ app.get('/signup', (req, res) => {
   res.status(200).sendFile(path.resolve(__dirname, '../client/index.html'));
 });
 
+// error handler for unknown requests
 app.use((req, res) => res.sendStatus(404));
 
+// global error handler
 app.use((err, req, res) => {
   const defaultErr = {
     log: 'Express error handler caught unknown middleware error',
