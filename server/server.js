@@ -22,4 +22,6 @@ app.get('/', (req, res) => {
   res.status(200).sendFile(path.resolve(__dirname, '../client/index.html'));
 });
 
+// app.use('/api', apiRouter);
+
 app.listen(PORT, () => console.log('listeniiiiing'));

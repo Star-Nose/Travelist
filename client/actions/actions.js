@@ -16,4 +16,11 @@ const submitLogin = (formInput) => ({
   payload: formInput,
 });
 
-export { addCount, submitSignupForm, submitLogin };
+const loginInput = (formInput) => ({
+  type: types.LOGIN_INPUT,
+  payload: formInput,
+});
+
+export {
+  addCount, submitSignupForm, submitLogin, loginInput,
+};

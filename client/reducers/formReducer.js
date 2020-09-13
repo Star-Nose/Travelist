@@ -1,3 +1,4 @@
+import axios from 'axios';
 import * as types from '../constants/actionTypes';
 
 const initialState = {
@@ -7,7 +8,7 @@ const initialState = {
     username: '',
     password: '',
   },
-  logIn: {
+  login: {
     username: '',
     password: '',
     validated: false,
@@ -26,17 +27,31 @@ const formReducer = (state = initialState, action) => {
 
     case types.SUBMIT_LOGIN:
       const event = action.payload;
-      console.log("Event", event);
-      console.log("Event.Value", event.value);
-      console.log("Event.Target", event.target);
-      if (formReducer.checkValidity() === false) {
+      if (event.target.checkValidity() === false) {
         event.preventDefault();
         event.stopPropogation();
+        return state;
       }
+      // add fetch request to check on login info
+      axios.post('/api/user-validation', state.login)
+        .then((response) => console.log(response))
+        .catch((err) => console.log('Error in SUBMIT_LOGIN Reducer', err));
+
+      const validated = true;
       return {
         ...state,
         login: {
-          ...action.payload,
+          validated,
+        },
+      };
+
+    case types.LOGIN_INPUT:
+      const { id, value } = action.payload.target;
+      console.log('LOGIN INPUT', id, value);
+      return {
+        ...state,
+        login: {
+          [id]: value,
         },
       };
 
