@@ -21,7 +21,7 @@ const Login = (props) => {
     <Container>
       <h1>Travelist</h1>
 
-      <Form noValidate validated={validated} onSubmit={submitLogin}>
+      <Form noValidate validated={validated}>
         <Form.Group controlId="loginUsername">
           <Form.Label>Username</Form.Label>
           <Form.Control type="text" placeholder="Username" required />
@@ -38,9 +38,9 @@ const Login = (props) => {
           <Form.Check type="checkbox" label="Remember me" variant="danger" />
         </Form.Group>
 
-        <Link to="/main">
-          <Button variant="outline-danger" type="submit">Login</Button>
-        </Link>
+        {/* <Link to="/main"> */}
+          <Button variant="outline-danger" type="button" onClick={submitLogin} >Login</Button>
+        {/* </Link> */}
       </Form>
 
       <br />
