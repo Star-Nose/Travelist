@@ -1,33 +1,37 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
+import * as actions from '../actions/actions.js';
 
-// const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = (dispatch) => ({
+  submitLogin: (e) => dispatch(actions.submitLogin(e)),
+});
 
-// });
+const mapStateToProps = (state) => ({
+  validated: state.form.logIn.validated,
+});
 
-// const mapStateToProps = (state) => ({
-
-// });
-
-const Login = () =>
-  // const { } = props;
-  (
+const Login = (props) => {
+  const { validated, submitLogin } = props;
+  return (
     <Container>
       <h1>Travelist</h1>
 
-      <Form>
+      <Form noValidate validated={validated} onSubmit={submitLogin}>
         <Form.Group controlId="loginUsername">
           <Form.Label>Username</Form.Label>
-          <Form.Control type="text" placeholder="Username" />
+          <Form.Control type="text" placeholder="Username" required />
+          <Form.Control.Feedback type="invalid">Incorrect Username</Form.Control.Feedback>
         </Form.Group>
 
         <Form.Group controlId="loginPassword">
           <Form.Label>Password</Form.Label>
-          <Form.Control type="password" placeholder="Password" />
+          <Form.Control type="password" placeholder="Password" required />
+          <Form.Control.Feedback type="invalid">Incorrect Password</Form.Control.Feedback>
         </Form.Group>
 
         <Form.Group controlId="loginCheckbox">
@@ -35,7 +39,7 @@ const Login = () =>
         </Form.Group>
 
         <Link to="/main">
-          <Button variant="outline-danger">Login</Button>
+          <Button variant="outline-danger" type="submit">Login</Button>
         </Link>
       </Form>
 
@@ -46,6 +50,7 @@ const Login = () =>
       </p>
     </Container>
   );
+};
 
-export default Login;
-// export default connect(mapStateToProps, mapDispatchToProps)(Login);
+// export default Login;
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
