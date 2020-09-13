@@ -13,12 +13,20 @@ app.use(express.json());
 // serving our bundle.js from webpack
 app.use('/dist', express.static(path.resolve(__dirname, '../dist')));
 
-// serving our basic html file
+// serving our basic html file to the three routes listed in our React Router for App.jsx
 app.get('/', (req, res) => {
   // db.query('SELECT * FROM ACTIVITIES').then((response) => {
   //   console.log(response);
   //   res.sendStatus(200);
   // });
+  res.status(200).sendFile(path.resolve(__dirname, '../client/index.html'));
+});
+
+app.get('/main', (req, res) => {
+  res.status(200).sendFile(path.resolve(__dirname, '../client/index.html'));
+});
+
+app.get('/signup', (req, res) => {
   res.status(200).sendFile(path.resolve(__dirname, '../client/index.html'));
 });
 
