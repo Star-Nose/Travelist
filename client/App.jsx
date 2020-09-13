@@ -10,6 +10,8 @@ const App = () => (
     <MainContainer />
     <Switch>
       <Route path="/" exact component={Login} />
+      <Route path="/main" component={MainContainer} />
+      {/* <Route path="/signup" component={Signup} /> */}
     </Switch>
   </div>
 );
