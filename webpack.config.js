@@ -13,6 +13,14 @@ module.exports = {
     contentBase: './client',
     port: 8080,
     proxy: {
+      '/main': {
+        target: 'http://localhost:3000/',
+        secure: false,
+      },
+      '/signup': {
+        target: 'http://localhost:3000/',
+        secure: false,
+      },
       '/api': {
         target: 'http://localhost:3000/',
         secure: false,
