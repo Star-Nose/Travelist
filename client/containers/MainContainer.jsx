@@ -17,8 +17,6 @@ const MainContainer = (props) => {
   const { count, addCount } = props;
   return (
     <div>
-      <Login />
-      From MainContainer.jsx
       {count}
       <button type="button" onClick={addCount}>+</button>
     </div>
