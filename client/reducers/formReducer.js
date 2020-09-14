@@ -15,6 +15,10 @@ const initialState = {
     validated: false,
     loginAttempts: 0,
   },
+  newPlans: {
+    newLocation: '',
+    country: '',
+  },
 };
 
 const formReducer = (state = initialState, action) => {
@@ -27,7 +31,9 @@ const formReducer = (state = initialState, action) => {
         password,
         confirmedPassword,
       } = action.payload;
-      const inputToDB = { firstName, email, username, password };
+      const inputToDB = {
+        firstName, email, username, password,
+      };
 
       // document
       //   .querySelectorAll('.signup-field')
@@ -55,6 +61,13 @@ const formReducer = (state = initialState, action) => {
         },
       };
     }
+    case types.NEW_PLANS:
+      return {
+        ...state,
+        newPlans: {
+          ...action.payload,
+        },
+      };
     case types.SIGNUP_FORM_INPUT: {
       const { name, value } = action.payload;
 
@@ -67,7 +80,7 @@ const formReducer = (state = initialState, action) => {
       };
     }
 
-    case types.LOGIN_INPUT:
+    case types.LOGIN_INPUT: {
       const { id, value } = action.payload.target;
       console.log('STATE VALUE', state.login);
       return {
@@ -77,8 +90,8 @@ const formReducer = (state = initialState, action) => {
           [id]: value,
         },
       };
-
-    case types.VALID_LOGIN:
+    }
+    case types.VALID_LOGIN: {
       console.log('VALID LOGIN', action.payload);
       let validated = false;
       let { loginAttempts } = state.login;
@@ -94,7 +107,18 @@ const formReducer = (state = initialState, action) => {
           loginAttempts,
         },
       };
-
+    }
+    case types.NEW_LOCATION_INPUT: {
+      const newLocation = action.payload.target.value;
+      console.log(state.newPlans.newLocation);
+      return {
+        ...state,
+        newPlans: {
+          ...state.newPlans,
+          newLocation,
+        },
+      };
+    }
     default:
       return state;
   }

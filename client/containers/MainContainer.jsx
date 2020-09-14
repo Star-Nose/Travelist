@@ -23,10 +23,10 @@ const MainContainer = (props) => {
   return (
     <div>
       <NavContainer />
-      <SidebarContainer />
-      <ActivitiesContainer />
-      {count}
-      <button type="button" onClick={addCount}>+</button>
+        <div className="body-container">
+          <SidebarContainer />
+          <ActivitiesContainer />
+          </div>
     </div>
   );
 };
