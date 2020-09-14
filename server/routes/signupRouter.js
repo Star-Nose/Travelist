@@ -5,7 +5,7 @@ const signupController = require('../controllers/signupController');
 const router = express.Router();
 
 router.post(
-  '/',
+  '/',,
   signupController.hashPassword,
   signupController.addUser,
   (req, res, next) => {
