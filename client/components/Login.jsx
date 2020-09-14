@@ -1,13 +1,13 @@
 /* eslint-disable react/prop-types */
-import React from 'react';
-import { connect } from 'react-redux';
+import React from "react";
+import { connect } from "react-redux";
 // react router allows for redirects to happen inside the component
-import { Link, Redirect } from 'react-router-dom';
+import { Link, Redirect } from "react-router-dom";
 // importing the entire react bootstrap
-import Button from 'react-bootstrap/Button';
-import Container from 'react-bootstrap/Container';
-import Form from 'react-bootstrap/Form';
-import * as actions from '../actions/actions.js';
+import Button from "react-bootstrap/Button";
+import Container from "react-bootstrap/Container";
+import Form from "react-bootstrap/Form";
+import * as actions from "../actions/actions.js";
 
 const mapDispatchToProps = (dispatch) => ({
   loginInput: (e) => dispatch(actions.loginInput(e)),
@@ -23,7 +23,12 @@ const mapStateToProps = (state) => ({
 
 const Login = (props) => {
   const {
-    validated, loginInput, validateLogin, username, password, loginAttempts,
+    validated,
+    loginInput,
+    validateLogin,
+    username,
+    password,
+    loginAttempts,
   } = props;
   if (validated === true) return <Redirect to="/main" />;
   if (loginAttempts > 0) return <Redirect to="/signup" />;
@@ -40,7 +45,9 @@ const Login = (props) => {
             required
             onChange={loginInput}
           />
-          <Form.Control.Feedback type="invalid">Incorrect Username</Form.Control.Feedback>
+          <Form.Control.Feedback type="invalid">
+            Incorrect Username
+          </Form.Control.Feedback>
         </Form.Group>
 
         <Form.Group controlId="password">
@@ -51,7 +58,9 @@ const Login = (props) => {
             required
             onChange={loginInput}
           />
-          <Form.Control.Feedback type="invalid">Incorrect Password</Form.Control.Feedback>
+          <Form.Control.Feedback type="invalid">
+            Incorrect Password
+          </Form.Control.Feedback>
         </Form.Group>
 
         <Form.Group controlId="loginCheckbox">
@@ -74,7 +83,6 @@ const Login = (props) => {
         <Link to="/signup">Sign up here!</Link>
       </p>
     </Container>
-
   );
 };
 

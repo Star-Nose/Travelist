@@ -27,7 +27,9 @@ const formReducer = (state = initialState, action) => {
         password,
         confirmedPassword,
       } = action.payload;
-      const inputToDB = { firstName, email, username, password };
+      const inputToDB = {
+        firstName, email, username, password,
+      };
 
       // document
       //   .querySelectorAll('.signup-field')
@@ -78,12 +80,10 @@ const formReducer = (state = initialState, action) => {
         },
       };
 
-    case types.VALID_LOGIN:
+    case types.VALID_LOGIN: {
       console.log('VALID LOGIN', action.payload);
-      let validated = false;
+      const validated = action.payload;
       let { loginAttempts } = state.login;
-
-      if (action.payload.length > 0) validated = true;
       loginAttempts += 1;
 
       return {
@@ -94,6 +94,7 @@ const formReducer = (state = initialState, action) => {
           loginAttempts,
         },
       };
+    }
 
     default:
       return state;
