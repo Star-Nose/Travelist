@@ -1,4 +1,5 @@
 const express = require('express');
+const SignupRouter = require('./routers/signupRouter');
 
 require('dotenv').config();
 
@@ -26,9 +27,7 @@ app.get('/main', (req, res) => {
   res.status(200).sendFile(path.resolve(__dirname, '../client/index.html'));
 });
 
-app.get('/signup', (req, res) => {
-  res.status(200).sendFile(path.resolve(__dirname, '../client/index.html'));
-});
+app.use('/signup', SignupRouter);
 
 app.post('/signup', (req, res) => {
   console.log(req.body);
