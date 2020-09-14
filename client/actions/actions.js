@@ -1,4 +1,5 @@
 import * as types from '../constants/actionTypes';
+import formReducer from '../reducers/formReducer';
 
 // eslint-disable-next-line import/prefer-default-export
 const addCount = () => ({
@@ -11,4 +12,9 @@ const submitSignupForm = (formInput) => ({
   payload: formInput,
 });
 
-export { addCount, submitSignupForm };
+const signupFormInput = (formInput) => ({
+  type: types.SIGNUP_FORM_INPUT,
+  payload: formInput,
+});
+
+export { addCount, submitSignupForm, signupFormInput };
