@@ -15,6 +15,10 @@ const initialState = {
     validated: false,
     loginAttempts: 0,
   },
+  newPlans: {
+    newLocation: '',
+    country: '',
+  },
 };
 
 const formReducer = (state = initialState, action) => {
@@ -57,6 +61,13 @@ const formReducer = (state = initialState, action) => {
         },
       };
     }
+    case types.NEW_PLANS:
+      return {
+        ...state,
+        newPlans: {
+          ...action.payload,
+        },
+      };
     case types.SIGNUP_FORM_INPUT: {
       const { name, value } = action.payload;
 
@@ -69,7 +80,7 @@ const formReducer = (state = initialState, action) => {
       };
     }
 
-    case types.LOGIN_INPUT:
+    case types.LOGIN_INPUT: {
       const { id, value } = action.payload.target;
       console.log('STATE VALUE', state.login);
       return {
@@ -79,7 +90,8 @@ const formReducer = (state = initialState, action) => {
           [id]: value,
         },
       };
-
+    }
+    
     case types.VALID_LOGIN: {
       console.log('VALID LOGIN', action.payload);
       const validated = action.payload;
@@ -95,7 +107,21 @@ const formReducer = (state = initialState, action) => {
         },
       };
     }
+<<<<<<< HEAD
 
+=======
+    case types.NEW_LOCATION_INPUT: {
+      const newLocation = action.payload.target.value;
+      console.log(state.newPlans.newLocation);
+      return {
+        ...state,
+        newPlans: {
+          ...state.newPlans,
+          newLocation,
+        },
+      };
+    }
+>>>>>>> master
     default:
       return state;
   }
