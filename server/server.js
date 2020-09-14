@@ -1,5 +1,5 @@
 const express = require('express');
-const SignupRouter = require('./routers/signupRouter');
+const SignupRouter = require('./routes/signupRouter');
 
 require('dotenv').config();
 
