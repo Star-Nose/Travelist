@@ -40,14 +40,17 @@ const loginInput = (formInput) => ({
 const validateLogin = (username, password) => (dispatch) => {
   axios
     .post('/api/user-validation', { username, password })
-    .then((response) =>
-      dispatch({
-        type: types.VALID_LOGIN,
-        payload: response.data,
-      })
-    )
+    .then((response) => dispatch({
+      type: types.VALID_LOGIN,
+      payload: response.data,
+    }))
     .catch((err) => console.log('Error in SUBMIT_LOGIN Reducer', err));
 };
+
+const loginKeyDown = (e) => ({
+  type: types.LOGIN_KEYDOWN,
+  payload: e.keyCode,
+});
 
 export {
   addCount,
@@ -57,5 +60,6 @@ export {
   signupFormInput,
   getActivities,
   newPlans,
-  newLocationInput, 
+  newLocationInput,
+  loginKeyDown,
 };
