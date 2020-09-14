@@ -1,3 +1,4 @@
+import axios from 'axios';
 import * as types from '../constants/actionTypes';
 
 // eslint-disable-next-line import/prefer-default-export
@@ -11,4 +12,20 @@ const submitSignupForm = (formInput) => ({
   payload: formInput,
 });
 
-export { addCount, submitSignupForm };
+const loginInput = (formInput) => ({
+  type: types.LOGIN_INPUT,
+  payload: formInput,
+});
+
+const validateLogin = (username, password) => (dispatch) => {
+  axios.post('/api/user-validation', { username, password })
+    .then((response) => dispatch({
+      type: types.VALID_LOGIN,
+      payload: response.data,
+    }))
+    .catch((err) => console.log('Error in SUBMIT_LOGIN Reducer', err));
+};
+
+export {
+  addCount, submitSignupForm, loginInput, validateLogin,
+};
