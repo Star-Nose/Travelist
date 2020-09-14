@@ -25,29 +25,6 @@ const formReducer = (state = initialState, action) => {
         },
       };
 
-    case types.SUBMIT_LOGIN:
-      const event = action.payload;
-      // if (event.target.checkValidity() === false) {
-      //   event.preventDefault();
-      //   event.stopPropogation();
-      //   return state;
-      // }
-
-      // add fetch request to check on login info
-      let valid = false;
-
-      axios.post('/api/user-validation', state.login)
-        .then((response) => {
-          console.log(response.data);
-          if (response.data.length === 0) return { ...state };// /signup
-          // return /main
-          valid = true;
-        })
-        .catch((err) => console.log('Error in SUBMIT_LOGIN Reducer', err));
-      console.log(valid);
-
-      return { ...state };
-
     case types.LOGIN_INPUT:
       const { id, value } = action.payload.target;
       // console.log('LOGIN INPUT', id, value);
@@ -57,6 +34,18 @@ const formReducer = (state = initialState, action) => {
         login: {
           ...state.login,
           [id]: value,
+        },
+      };
+
+    case types.VALID_LOGIN:
+      console.log('VALID LOGIN', action.payload);
+      let validated = false;
+      if (action.payload.length > 0) validated = true;
+      return {
+        ...state,
+        login: {
+          ...state.login,
+          validated,
         },
       };
 

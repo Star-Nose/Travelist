@@ -1,15 +1,15 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link, Route, Redirect } from 'react-router-dom';
+import { Link, Route } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import * as actions from '../actions/actions.js';
 
 const mapDispatchToProps = (dispatch) => ({
-  submitLogin: (e) => dispatch(actions.submitLogin(e)),
   loginInput: (e) => dispatch(actions.loginInput(e)),
+  validateLogin: (u, p) => dispatch(actions.validateLogin(u, p)),
 });
 
 const mapStateToProps = (state) => ({
@@ -20,7 +20,7 @@ const mapStateToProps = (state) => ({
 
 const Login = (props) => {
   const {
-    validated, submitLogin, loginInput,
+    validated, loginInput, validateLogin, username, password,
   } = props;
   return (
     <Container>
@@ -59,7 +59,8 @@ const Login = (props) => {
           className="mr-3"
           variant="danger"
           type="button"
-          onClick={submitLogin}
+          onClick={() => validateLogin(username, password)}
+          // onClick={submitLogin}
         >
           Login
         </Button>
@@ -80,10 +81,6 @@ const Login = (props) => {
         New user?&nbsp;
         <Link to="/signup">Sign up here!</Link>
       </p>
-
-      {/* <Route exact path="/">
-        {validated ? <Redirect to="/main" /> : <Redirect to="/signup" />}
-      </Route> */}
     </Container>
 
   );
