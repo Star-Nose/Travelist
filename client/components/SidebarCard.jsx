@@ -1,11 +1,12 @@
 import React from 'react';
 
 const SidebarCard = (props) => {
+  const { location, country } = props;
   return (
   <button tripid={props.tripId} onClick={ () => props.getActivities(props.tripId)} className="side-bar-card">
-    <label>Location: </label> 
+    <label>Location: {location}</label> 
         <br/>
-    <label>Country: </label>
+    <label>Country: {country}</label>
   </button>
   );
 };

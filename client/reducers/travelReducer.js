@@ -30,5 +30,5 @@ const travelReducer = (state = initialState, action) => {
       return state;
   }
 };
-
+``
 export default travelReducer;

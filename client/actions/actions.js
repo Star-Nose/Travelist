@@ -15,4 +15,11 @@ const getActivities = (tripId) => ({
   type: types.GET_ACTIVITIES,
   payload: tripId,
 });
-export { addCount, submitSignupForm, getActivities };
+
+const newPlans = (plans) => ({
+  type: types.NEW_PLANS,
+  payload: plans,
+});
+
+
+export { addCount, submitSignupForm, getActivities, newPlans };

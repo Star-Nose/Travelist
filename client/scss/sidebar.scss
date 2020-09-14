@@ -7,8 +7,17 @@
     width: 20%;
     min-width: 130px;
     max-width: 250px;
+    text-align: start;
+}
+
+#itineraries {
     text-align: center;
 }
+
+.itinerary-form {
+    margin: 3%;
+}
+
 
 .side-bar-card {
     margin: 3%;
@@ -16,4 +25,5 @@
     width: 94%;
     border: solid 1px black;
     text-align: start;
+    box-shadow: 0.2rem 0.2rem 0.2rem $base-color;
 }

@@ -11,6 +11,10 @@ const initialState = {
     username: '',
     password: '',
   },
+  newPlans: {
+    newLocation: '',
+    country: '',
+  },
 };
 
 const formReducer = (state = initialState, action) => {
@@ -22,8 +26,17 @@ const formReducer = (state = initialState, action) => {
           ...action.payload,
         },
       };
+    case types.NEW_PLANS:
+      return {
+        ...state,
+        newPlans: {
+          ...action.payload,
+        },
+      };
 
     default:
       return state;
   }
 };
+
+export default formReducer;
