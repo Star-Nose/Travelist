@@ -5,11 +5,10 @@ const router = express.Router();
 const itineraryController = require('../controllers/itineraryController.js')
 
 router.post('/',
-  // itineraryController.newPlan,
+  itineraryController.newPlan,
   (req, res) => {
-    console.log(req.body);
-    console.log('hello');
-    res.status(200).send('post successful');
+    console.log('posted into db @ iteneraryController');
+    res.sendStatus(200);
   });
 
 module.exports = router;

@@ -6,7 +6,7 @@ require('dotenv').config();
 const path = require('path');
 const itineraryRouter = require('./routes/itineraryRouter.js');
 const apiRouter = require('./routes/api.js');
-const db = require('./models/mainModel');
+
 const app = express();
 
 const PORT = process.env.PORT || 3000;
