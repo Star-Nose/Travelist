@@ -27,30 +27,42 @@ const formReducer = (state = initialState, action) => {
 
     case types.SUBMIT_LOGIN:
       const event = action.payload;
-      if (event.target.checkValidity() === false) {
-        event.preventDefault();
-        event.stopPropogation();
-        return state;
-      }
-      // add fetch request to check on login info
-      axios.post('/api/user-validation', state.login)
-        .then((response) => console.log(response))
-        .catch((err) => console.log('Error in SUBMIT_LOGIN Reducer', err));
+      // if (event.target.checkValidity() === false) {
+      //   event.preventDefault();
+      //   event.stopPropogation();
+      //   return state;
+      // }
 
-      const validated = true;
-      return {
-        ...state,
-        login: {
-          validated,
-        },
-      };
+      // add fetch request to check on login info
+      let valid = false;
+
+      axios.post('/api/user-validation', state.login)
+        .then((response) => {
+          console.log(response.data);
+          if (response.data.length === 0) return { ...state };// /signup
+          // return /main
+          valid = true;
+          return {
+            ...state,
+            login: {
+              ...state.login,
+              validated: true,
+            },
+          };
+        })
+        .catch((err) => console.log('Error in SUBMIT_LOGIN Reducer', err));
+      console.log(valid);
+
+      return { ...state };
 
     case types.LOGIN_INPUT:
       const { id, value } = action.payload.target;
-      console.log('LOGIN INPUT', id, value);
+      // console.log('LOGIN INPUT', id, value);
+      console.log('STATE VALUE', state.login);
       return {
         ...state,
         login: {
+          ...state.login,
           [id]: value,
         },
       };

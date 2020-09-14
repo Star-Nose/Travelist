@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, Route, Redirect } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
@@ -14,21 +14,26 @@ const mapDispatchToProps = (dispatch) => ({
 
 const mapStateToProps = (state) => ({
   validated: state.form.login.validated,
+  username: state.form.login.username,
+  password: state.form.login.password,
 });
 
 const Login = (props) => {
-  const { validated, submitLogin, loginInput } = props;
+  const {
+    validated, submitLogin, loginInput,
+  } = props;
   return (
     <Container>
       <h1>Travelist</h1>
 
-      <Form noValidate validated={validated}>
+      <Form noValidate>
         <Form.Group controlId="username">
           <Form.Label>Username</Form.Label>
           <Form.Control
             type="text"
             placeholder="Username"
             required
+            // value={username}
             onChange={loginInput}
           />
           <Form.Control.Feedback type="invalid">Incorrect Username</Form.Control.Feedback>
@@ -40,6 +45,7 @@ const Login = (props) => {
             type="password"
             placeholder="Password"
             required
+            // value={password}
             onChange={loginInput}
           />
           <Form.Control.Feedback type="invalid">Incorrect Password</Form.Control.Feedback>
@@ -49,9 +55,24 @@ const Login = (props) => {
           <Form.Check type="checkbox" label="Remember me" />
         </Form.Group>
 
-        {/* <Link to="/main"> */}
-        <Button variant="outline-danger" type="button" onClick={submitLogin}>Login</Button>
-        {/* </Link> */}
+        <Button
+          className="mr-3"
+          variant="danger"
+          type="button"
+          onClick={submitLogin}
+        >
+          Login
+        </Button>
+        <Link to={validated ? '/main' : '/signup'}>
+          <Button
+            variant="outline-danger"
+            type="button"
+            // onClick={submitLogin}
+          >
+            Check Validation
+          </Button>
+        </Link>
+
       </Form>
 
       <br />
@@ -59,7 +80,12 @@ const Login = (props) => {
         New user?&nbsp;
         <Link to="/signup">Sign up here!</Link>
       </p>
+
+      {/* <Route exact path="/">
+        {validated ? <Redirect to="/main" /> : <Redirect to="/signup" />}
+      </Route> */}
     </Container>
+
   );
 };
 
