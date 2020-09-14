@@ -42,13 +42,6 @@ const formReducer = (state = initialState, action) => {
           if (response.data.length === 0) return { ...state };// /signup
           // return /main
           valid = true;
-          return {
-            ...state,
-            login: {
-              ...state.login,
-              validated: true,
-            },
-          };
         })
         .catch((err) => console.log('Error in SUBMIT_LOGIN Reducer', err));
       console.log(valid);
