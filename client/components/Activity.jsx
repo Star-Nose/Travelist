@@ -3,8 +3,10 @@ import { Container, Modal, Button } from 'react-bootstrap';
 
 
 const Activity = (props) => (
+  // here, we should loop through a data structure from state, to display the activities array
   <Container id="Activity">
-    The activity modal will go HERE:
+    
+    Individual Activities 
   </Container>
 );
 
