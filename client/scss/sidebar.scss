@@ -1,0 +1,19 @@
+@import "~bootstrap/scss/bootstrap";
+@import "./variables.scss";
+
+.side-bar {
+    background-color: lighten($color: $base-color, $amount: 75);
+    height: 100vh;
+    width: 20%;
+    min-width: 130px;
+    max-width: 250px;
+    justify-content: center;
+}
+
+.side-bar-card {
+    margin: 3%;
+    padding: 5%;
+    width: 94%;
+    border: solid 1px black;
+
+}
