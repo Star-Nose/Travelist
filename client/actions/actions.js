@@ -12,6 +12,21 @@ const submitSignupForm = (formInput) => ({
   payload: formInput,
 });
 
+const getActivities = (tripId) => ({
+  type: types.GET_ACTIVITIES,
+  payload: tripId,
+});
+
+const newPlans = (plans) => ({
+  type: types.NEW_PLANS,
+  payload: plans,
+});
+
+const newLocationInput = (location) => ({
+  type: types.NEW_LOCATION_INPUT,
+  payload: location,
+});
+
 const signupFormInput = (formInput) => ({
   type: types.SIGNUP_FORM_INPUT,
   payload: formInput,
@@ -40,4 +55,7 @@ export {
   loginInput,
   validateLogin,
   signupFormInput,
+  getActivities,
+  newPlans,
+  newLocationInput, 
 };
