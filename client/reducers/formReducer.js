@@ -1,15 +1,19 @@
+import axios from 'axios';
 import * as types from '../constants/actionTypes';
 
 const initialState = {
   signUp: {
-    name: '',
+    firstName: '',
     email: '',
     username: '',
     password: '',
+    confirmedPassword: '',
   },
-  logIn: {
+  login: {
     username: '',
     password: '',
+    validated: false,
+    loginAttempts: 0,
   },
   newPlans: {
     newLocation: '',
@@ -19,13 +23,44 @@ const initialState = {
 
 const formReducer = (state = initialState, action) => {
   switch (action.type) {
-    case types.SIGN_UP_SUBMIT:
+    case types.SUBMIT_SIGNUP_FORM: {
+      const {
+        firstName,
+        email,
+        username,
+        password,
+        confirmedPassword,
+      } = action.payload;
+      const inputToDB = {
+        firstName, email, username, password,
+      };
+
+      // document
+      //   .querySelectorAll('.signup-field')
+      //   .forEach((field) => (field.value = ''));
+
+      if (password !== confirmedPassword) {
+        console.log('passwords dont match');
+        return {
+          ...state,
+        };
+      }
+      console.log('pws match');
+      axios
+        .post('/signup', inputToDB)
+        .then((response) => {
+          console.log('in reducer --> ', response);
+        })
+        .catch((err) => console.log('err in reducer: ', err));
+
       return {
         ...state,
         signUp: {
+          ...state.signUp,
           ...action.payload,
         },
       };
+    }
     case types.NEW_PLANS:
       return {
         ...state,
@@ -33,8 +68,47 @@ const formReducer = (state = initialState, action) => {
           ...action.payload,
         },
       };
+    case types.SIGNUP_FORM_INPUT: {
+      const { name, value } = action.payload;
 
-    case types.NEW_LOCATION_INPUT:
+      return {
+        ...state,
+        signUp: {
+          ...state.signUp,
+          [name]: value,
+        },
+      };
+    }
+
+    case types.LOGIN_INPUT: {
+      const { id, value } = action.payload.target;
+      console.log('STATE VALUE', state.login);
+      return {
+        ...state,
+        login: {
+          ...state.login,
+          [id]: value,
+        },
+      };
+    }
+    case types.VALID_LOGIN: {
+      console.log('VALID LOGIN', action.payload);
+      let validated = false;
+      let { loginAttempts } = state.login;
+
+      if (action.payload.length > 0) validated = true;
+      loginAttempts += 1;
+
+      return {
+        ...state,
+        login: {
+          ...state.login,
+          validated,
+          loginAttempts,
+        },
+      };
+    }
+    case types.NEW_LOCATION_INPUT: {
       const newLocation = action.payload.target.value;
       console.log(state.newPlans.newLocation);
       return {
@@ -44,6 +118,7 @@ const formReducer = (state = initialState, action) => {
           newLocation,
         },
       };
+    }
     default:
       return state;
   }
