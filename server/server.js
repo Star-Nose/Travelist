@@ -30,4 +30,9 @@ app.get('/signup', (req, res) => {
   res.status(200).sendFile(path.resolve(__dirname, '../client/index.html'));
 });
 
+app.post('/signup', (req, res) => {
+  console.log(req.body);
+  res.status(200).send('post successful');
+});
+
 app.listen(PORT, () => console.log('listeniiiiing'));
