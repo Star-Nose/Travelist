@@ -1,5 +1,5 @@
-import * as types from '../constants/actionTypes';
 import axios from 'axios';
+import * as types from '../constants/actionTypes';
 
 const initialState = {
   signUp: {
@@ -17,10 +17,29 @@ const initialState = {
 
 const formReducer = (state = initialState, action) => {
   switch (action.type) {
-    case types.SUBMIT_SIGNUP_FORM:
-      console.log(action.payload);
+    case types.SUBMIT_SIGNUP_FORM: {
+      const {
+        firstName,
+        email,
+        username,
+        password,
+        confirmedPassword,
+      } = action.payload;
+      const inputToDB = { firstName, email, username, password };
+
+      // document
+      //   .querySelectorAll('.signup-field')
+      //   .forEach((field) => (field.value = ''));
+
+      if (password !== confirmedPassword) {
+        console.log('passwords dont match');
+        return {
+          ...state,
+        };
+      }
+      console.log('pws match');
       axios
-        .post('/signup', action.payload)
+        .post('/signup', inputToDB)
         .then((response) => {
           console.log('in reducer --> ', response);
         })
@@ -33,11 +52,10 @@ const formReducer = (state = initialState, action) => {
           ...action.payload,
         },
       };
+    }
     case types.SIGNUP_FORM_INPUT: {
       const { name, value } = action.payload;
-      // console.log('name: ', name);
-      // console.log('value: ', value);
-      // console.log('state: ', state);
+
       return {
         ...state,
         signUp: {
