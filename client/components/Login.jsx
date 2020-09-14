@@ -1,7 +1,9 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import { connect } from 'react-redux';
+// react router allows for redirects to happen inside the component
 import { Link, Redirect } from 'react-router-dom';
+// importing the entire react bootstrap
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
@@ -61,7 +63,6 @@ const Login = (props) => {
           variant="danger"
           type="button"
           onClick={() => validateLogin(username, password)}
-          // onClick={submitLogin}
         >
           Login
         </Button>

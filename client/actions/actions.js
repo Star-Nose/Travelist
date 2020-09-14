@@ -17,7 +17,7 @@ const loginInput = (formInput) => ({
   payload: formInput,
 });
 
-const validateLogin = (username, password) => function (dispatch) {
+const validateLogin = (username, password) => (dispatch) => {
   axios.post('/api/user-validation', { username, password })
     .then((response) => dispatch({
       type: types.VALID_LOGIN,
