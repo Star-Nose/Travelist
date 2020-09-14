@@ -12,6 +12,7 @@ const initialState = {
     username: '',
     password: '',
     validated: false,
+    loginAttempts: 0,
   },
 };
 
@@ -27,7 +28,6 @@ const formReducer = (state = initialState, action) => {
 
     case types.LOGIN_INPUT:
       const { id, value } = action.payload.target;
-      // console.log('LOGIN INPUT', id, value);
       console.log('STATE VALUE', state.login);
       return {
         ...state,
@@ -40,12 +40,17 @@ const formReducer = (state = initialState, action) => {
     case types.VALID_LOGIN:
       console.log('VALID LOGIN', action.payload);
       let validated = false;
+      let { loginAttempts } = state.login;
+
       if (action.payload.length > 0) validated = true;
+      loginAttempts += 1;
+
       return {
         ...state,
         login: {
           ...state.login,
           validated,
+          loginAttempts,
         },
       };
 

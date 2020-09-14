@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link, Route } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
@@ -16,12 +16,15 @@ const mapStateToProps = (state) => ({
   validated: state.form.login.validated,
   username: state.form.login.username,
   password: state.form.login.password,
+  loginAttempts: state.form.login.loginAttempts,
 });
 
 const Login = (props) => {
   const {
-    validated, loginInput, validateLogin, username, password,
+    validated, loginInput, validateLogin, username, password, loginAttempts,
   } = props;
+  if (validated === true) return <Redirect to="/main" />;
+  if (loginAttempts > 0) return <Redirect to="/signup" />;
   return (
     <Container>
       <h1>Travelist</h1>
@@ -62,16 +65,6 @@ const Login = (props) => {
         >
           Login
         </Button>
-        <Link to={validated ? '/main' : '/signup'}>
-          <Button
-            variant="outline-danger"
-            type="button"
-            // onClick={submitLogin}
-          >
-            Enter Site
-          </Button>
-        </Link>
-
       </Form>
 
       <br />
