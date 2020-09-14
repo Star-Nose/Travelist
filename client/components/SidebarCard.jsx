@@ -1,6 +1,12 @@
 import React from 'react';
 
-const SidebarCard = (props) => (<div className="side-bar-card">card</div>);
+const SidebarCard = (props) => {
+    return (<div className="side-bar-card">
+        <label>Location: </label> 
+        <br/>
+        <label>Country: </label>
+    </div>)
+};
 
 
 export default SidebarCard;
