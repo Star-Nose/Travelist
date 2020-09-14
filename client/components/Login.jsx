@@ -33,7 +33,6 @@ const Login = (props) => {
             type="text"
             placeholder="Username"
             required
-            // value={username}
             onChange={loginInput}
           />
           <Form.Control.Feedback type="invalid">Incorrect Username</Form.Control.Feedback>
@@ -45,7 +44,6 @@ const Login = (props) => {
             type="password"
             placeholder="Password"
             required
-            // value={password}
             onChange={loginInput}
           />
           <Form.Control.Feedback type="invalid">Incorrect Password</Form.Control.Feedback>
@@ -70,7 +68,7 @@ const Login = (props) => {
             type="button"
             // onClick={submitLogin}
           >
-            Check Validation
+            Enter Site
           </Button>
         </Link>
 
