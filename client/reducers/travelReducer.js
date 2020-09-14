@@ -29,7 +29,7 @@ const travelReducer = (state = initialState, action) => {
       const newTrips = state.trips.slice();
       newTrips.push(action.payload);
       console.log('inside travel reducer, state.trips:', state.trips);
-      axios.post('/itinerary/new-plan', newTrips[newTrips.length - 1])
+      axios.post('/itinerary', { location: 'Los Angeles' })
         .then((res) => console.log(res))
         .catch((err) => console.log('error inside of NEW_PLANS travel reducer', err));
       return {
