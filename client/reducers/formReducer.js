@@ -34,6 +34,16 @@ const formReducer = (state = initialState, action) => {
         },
       };
 
+    case types.NEW_LOCATION_INPUT:
+      const newLocation = action.payload.target.value;
+      console.log(state.newPlans.newLocation);
+      return {
+        ...state,
+        newPlans: {
+          ...state.newPlans,
+          newLocation,
+        },
+      };
     default:
       return state;
   }

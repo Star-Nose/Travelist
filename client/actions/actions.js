@@ -21,5 +21,9 @@ const newPlans = (plans) => ({
   payload: plans,
 });
 
+const newLocationInput = (location) => ({
+  type: types.NEW_LOCATION_INPUT,
+  payload: location,
+});
 
-export { addCount, submitSignupForm, getActivities, newPlans };
+export { addCount, submitSignupForm, getActivities, newPlans, newLocationInput };
