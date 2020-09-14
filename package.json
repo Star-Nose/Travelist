@@ -20,6 +20,7 @@
   "homepage": "https://github.com/mig824/Travelist#readme",
   "dependencies": {
     "axios": "^0.20.0",
+    "bcrypt": "^5.0.0",
     "bootstrap": "^4.5.2",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
