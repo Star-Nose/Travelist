@@ -12,20 +12,32 @@ const submitSignupForm = (formInput) => ({
   payload: formInput,
 });
 
+const signupFormInput = (formInput) => ({
+  type: types.SIGNUP_FORM_INPUT,
+  payload: formInput,
+});
+
 const loginInput = (formInput) => ({
   type: types.LOGIN_INPUT,
   payload: formInput,
 });
 
 const validateLogin = (username, password) => (dispatch) => {
-  axios.post('/api/user-validation', { username, password })
-    .then((response) => dispatch({
-      type: types.VALID_LOGIN,
-      payload: response.data,
-    }))
+  axios
+    .post('/api/user-validation', { username, password })
+    .then((response) =>
+      dispatch({
+        type: types.VALID_LOGIN,
+        payload: response.data,
+      })
+    )
     .catch((err) => console.log('Error in SUBMIT_LOGIN Reducer', err));
 };
 
 export {
-  addCount, submitSignupForm, loginInput, validateLogin,
+  addCount,
+  submitSignupForm,
+  loginInput,
+  validateLogin,
+  signupFormInput,
 };
