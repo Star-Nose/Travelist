@@ -1,5 +1,4 @@
 import * as types from '../constants/actionTypes';
-import formReducer from '../reducers/formReducer';
 
 // eslint-disable-next-line import/prefer-default-export
 const addCount = () => ({
