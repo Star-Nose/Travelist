@@ -14,10 +14,10 @@ const mapStateToProps = (state) => ({
 });
 
 const ActivitiesContainer = (props) => (
-  <div>
-    <div>Activities Container</div>
-    <Button>Add Activity</Button>
-    <div>
+  <div id="large-activity-container">
+    <h1>Activities: </h1>
+    <div id="all-activities">
+      <Button>Add Activity</Button>
       <Activity />
     </div>
   </div>
