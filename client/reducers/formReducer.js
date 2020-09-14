@@ -62,13 +62,6 @@ const formReducer = (state = initialState, action) => {
         },
       };
     }
-    case types.NEW_PLANS:
-      return {
-        ...state,
-        newPlans: {
-          ...action.payload,
-        },
-      };
     case types.SIGNUP_FORM_INPUT: {
       const { name, value } = action.payload;
 
@@ -109,13 +102,12 @@ const formReducer = (state = initialState, action) => {
       };
     }
     case types.NEW_LOCATION_INPUT: {
-      const newLocation = action.payload.target.value;
-      console.log(state.newPlans.newLocation);
+      const { value, name } = action.payload;
       return {
         ...state,
         newPlans: {
           ...state.newPlans,
-          newLocation,
+          [name]: value,
         },
       };
     }
