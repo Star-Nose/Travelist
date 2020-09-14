@@ -11,4 +11,8 @@ const submitSignupForm = (formInput) => ({
   payload: formInput,
 });
 
-export { addCount, submitSignupForm };
+const getActivities = (tripId) => ({
+  type: types.GET_ACTIVITIES,
+  payload: tripId,
+});
+export { addCount, submitSignupForm, getActivities };
