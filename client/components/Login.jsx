@@ -1,42 +1,87 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import Button from 'react-bootstrap/Button';
-import Container from 'react-bootstrap/Container';
-import Form from 'react-bootstrap/Form';
+/* eslint-disable react/prop-types */
+import React from "react";
+import { connect } from "react-redux";
+// react router allows for redirects to happen inside the component
+import { Link, Redirect } from "react-router-dom";
+// importing the entire react bootstrap
+import Button from "react-bootstrap/Button";
+import Container from "react-bootstrap/Container";
+import Form from "react-bootstrap/Form";
+import * as actions from "../actions/actions.js";
 
-// const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = (dispatch) => ({
+  loginInput: (e) => dispatch(actions.loginInput(e)),
+  validateLogin: (u, p) => dispatch(actions.validateLogin(u, p)),
+  loginKeyDown: (e) => dispatch(actions.loginKeyDown(e)),
+});
 
-// });
+const mapStateToProps = (state) => ({
+  validated: state.form.login.validated,
+  username: state.form.login.username,
+  password: state.form.login.password,
+  loginAttempts: state.form.login.loginAttempts,
+  enterKeyPressed: state.form.login.enterKeyPressed,
+});
 
-// const mapStateToProps = (state) => ({
-
-// });
-
-const Login = () =>
-  // const { } = props;
-  (
+const Login = (props) => {
+  const {
+    validated,
+    loginInput,
+    validateLogin,
+    username,
+    password,
+    loginAttempts,
+    loginKeyDown,
+    enterKeyPressed,
+  } = props;
+  if (validated === true) return <Redirect to="/main" />;
+  if (loginAttempts > 0) return <Redirect to="/signup" />;
+  if (enterKeyPressed === true) return () => validateLogin(username, password);
+  return (
     <Container>
       <h1>Travelist</h1>
 
-      <Form>
-        <Form.Group controlId="loginUsername">
+      <Form noValidate>
+        <Form.Group controlId="username">
           <Form.Label>Username</Form.Label>
-          <Form.Control type="text" placeholder="Username" />
+          <Form.Control
+            type="text"
+            placeholder="Username"
+            required
+            onChange={loginInput}
+            // onKeyDown={loginKeyDown}
+          />
+          <Form.Control.Feedback type="invalid">
+            Incorrect Username
+          </Form.Control.Feedback>
         </Form.Group>
 
-        <Form.Group controlId="loginPassword">
+        <Form.Group controlId="password">
           <Form.Label>Password</Form.Label>
-          <Form.Control type="password" placeholder="Password" />
+          <Form.Control
+            type="password"
+            placeholder="Password"
+            required
+            onChange={loginInput}
+            // onKeyDown={loginKeyDown}
+          />
+          <Form.Control.Feedback type="invalid">
+            Incorrect Password
+          </Form.Control.Feedback>
         </Form.Group>
 
         <Form.Group controlId="loginCheckbox">
-          <Form.Check type="checkbox" label="Remember me" variant="danger" />
+          <Form.Check type="checkbox" label="Remember me" />
         </Form.Group>
 
-        <Link to="/main">
-          <Button variant="outline-danger">Login</Button>
-        </Link>
+        <Button
+          className="mr-3"
+          variant="danger"
+          type="button"
+          onClick={() => validateLogin(username, password)}
+        >
+          Login
+        </Button>
       </Form>
 
       <br />
@@ -46,5 +91,7 @@ const Login = () =>
       </p>
     </Container>
   );
-export default Login;
-// export default connect(mapStateToProps, mapDispatchToProps)(Login);
+};
+
+// export default Login;
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
