@@ -22,7 +22,7 @@ const SidebarContainer = (props) => {
   // loop through locations in db and and create <SidebarCard /> for each
   return (
     <div className="side-bar">
-      <h6>Itineraries</h6>
+      <h5>Itineraries</h5>
       <SidebarCard
         tripId={1}
         getActivities={getActivities}

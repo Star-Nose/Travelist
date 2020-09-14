@@ -25,6 +25,7 @@ const travelReducer = (state = initialState, action) => {
       console.log(payload);
       return { ...state };
     }
+    // this action will show or hide the modal inside of the Activities Container
     default:
       return state;
   }
