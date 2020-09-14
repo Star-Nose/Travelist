@@ -76,7 +76,6 @@ const formReducer = (state = initialState, action) => {
 
     case types.LOGIN_INPUT: {
       const { id, value } = action.payload.target;
-      console.log('STATE VALUE', state.login);
       return {
         ...state,
         login: {
