@@ -6,9 +6,6 @@ const formController = {};
 formController.findUser = (req, res, next) => {
   const { username, password } = req.body;
   res.locals.password = password;
-  // console.log('REQ BODY', req.body);
-  // console.log('USERNAME', username);
-  // console.log('PASSWORD', password);
   const values = [username];
   const queryString = `
     SELECT * FROM users

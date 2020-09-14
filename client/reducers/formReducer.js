@@ -14,6 +14,7 @@ const initialState = {
     password: '',
     validated: false,
     loginAttempts: 0,
+    enterKeyPressed: false,
   },
   newPlans: {
     newLocation: '',
@@ -91,7 +92,7 @@ const formReducer = (state = initialState, action) => {
         },
       };
     }
-    
+
     case types.VALID_LOGIN: {
       console.log('VALID LOGIN', action.payload);
       const validated = action.payload;
@@ -107,9 +108,6 @@ const formReducer = (state = initialState, action) => {
         },
       };
     }
-<<<<<<< HEAD
-
-=======
     case types.NEW_LOCATION_INPUT: {
       const newLocation = action.payload.target.value;
       console.log(state.newPlans.newLocation);
@@ -121,7 +119,20 @@ const formReducer = (state = initialState, action) => {
         },
       };
     }
->>>>>>> master
+
+    case types.LOGIN_KEYDOWN: {
+      let enterKeyPressed = false;
+      console.log('ENTER KEY PRESSED', action.payload);
+      if (action.payload === 13) enterKeyPressed = true;
+      return {
+        ...state,
+        login: {
+          ...state.login,
+          enterKeyPressed,
+        },
+      };
+    }
+
     default:
       return state;
   }

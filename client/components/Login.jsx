@@ -12,6 +12,7 @@ import * as actions from "../actions/actions.js";
 const mapDispatchToProps = (dispatch) => ({
   loginInput: (e) => dispatch(actions.loginInput(e)),
   validateLogin: (u, p) => dispatch(actions.validateLogin(u, p)),
+  loginKeyDown: (e) => dispatch(actions.loginKeyDown(e)),
 });
 
 const mapStateToProps = (state) => ({
@@ -19,6 +20,7 @@ const mapStateToProps = (state) => ({
   username: state.form.login.username,
   password: state.form.login.password,
   loginAttempts: state.form.login.loginAttempts,
+  enterKeyPressed: state.form.login.enterKeyPressed,
 });
 
 const Login = (props) => {
@@ -29,9 +31,12 @@ const Login = (props) => {
     username,
     password,
     loginAttempts,
+    loginKeyDown,
+    enterKeyPressed,
   } = props;
   if (validated === true) return <Redirect to="/main" />;
   if (loginAttempts > 0) return <Redirect to="/signup" />;
+  if (enterKeyPressed === true) return () => validateLogin(username, password);
   return (
     <Container>
       <h1>Travelist</h1>
@@ -44,6 +49,7 @@ const Login = (props) => {
             placeholder="Username"
             required
             onChange={loginInput}
+            // onKeyDown={loginKeyDown}
           />
           <Form.Control.Feedback type="invalid">
             Incorrect Username
@@ -57,6 +63,7 @@ const Login = (props) => {
             placeholder="Password"
             required
             onChange={loginInput}
+            // onKeyDown={loginKeyDown}
           />
           <Form.Control.Feedback type="invalid">
             Incorrect Password
