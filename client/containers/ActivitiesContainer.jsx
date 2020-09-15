@@ -10,6 +10,7 @@ const mapDispatchToProps = (dispatch) => ({
   handleFormInput: (newState) => dispatch(actions.activityFormInput(newState)),
   handleFormSubmit: (newState) =>
     dispatch(actions.activityFormSubmit(newState)),
+  addToActivitiesArray: (activity) => dispatch(actions.addActivity(activity)),
 });
 
 const mapStateToProps = (state) => ({
@@ -18,6 +19,7 @@ const mapStateToProps = (state) => ({
   address: state.form.newActivity.address,
   link: state.form.newActivity.link,
   completed: state.form.newActivity.completed,
+  activities: state.trips.activities,
 });
 
 const ActivitiesContainer = (props) => {
@@ -29,6 +31,8 @@ const ActivitiesContainer = (props) => {
     link,
     handleFormInput,
     handleFormSubmit,
+    addToActivitiesArray,
+    activities,
   } = props;
 
   return (
@@ -42,11 +46,20 @@ const ActivitiesContainer = (props) => {
         link={link}
         handleFormInput={handleFormInput}
         handleFormSubmit={handleFormSubmit}
+        addActivity={addToActivitiesArray}
       />
       <h1>Activities: </h1>
       <div id="all-activities">
         <Button onClick={() => setShowModal(true)}>Add Activity</Button>
-        <Activity />
+        {activities.map((el, i) => (
+          <Activity
+            key={`activity${i}`}
+            description={description}
+            notes={notes}
+            address={address}
+            link={link}
+          />
+        ))}
       </div>
     </div>
   );
