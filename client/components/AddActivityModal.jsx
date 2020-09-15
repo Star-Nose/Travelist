@@ -12,6 +12,7 @@ const AddActivityModal = ({
   link,
   handleFormInput,
   handleFormSubmit,
+  addActivity,
 }) => {
   const [inputValues, setInputValues] = useState([]);
 
@@ -25,6 +26,7 @@ const AddActivityModal = ({
           onSubmit={(e) => {
             e.preventDefault();
             handleFormSubmit({ description, notes, address, link });
+            addActivity({ description, notes, address, link });
           }}
         >
           <Form.Group controlId="activityDescription">
