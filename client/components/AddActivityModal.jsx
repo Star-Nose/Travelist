@@ -62,7 +62,12 @@ const AddActivityModal = ({
             />
           </Form.Group>
 
-          <Button variant="danger" type="submit" className="mt-4">
+          <Button
+            variant="danger"
+            type="submit"
+            className="mt-4"
+            onClick={() => onHide()}
+          >
             Add Activity
           </Button>
           <Button
