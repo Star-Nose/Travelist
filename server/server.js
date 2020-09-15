@@ -4,8 +4,9 @@ const SignupRouter = require('./routes/signupRouter');
 require('dotenv').config();
 
 const path = require('path');
+const itineraryRouter = require('./routes/itineraryRouter.js');
 const apiRouter = require('./routes/api.js');
-const db = require('./models/mainModel');
+
 const app = express();
 
 const PORT = process.env.PORT || 3000;
@@ -19,6 +20,8 @@ app.use('/dist', express.static(path.resolve(__dirname, '../dist')));
 app.get('/', (req, res) => {
   res.status(200).sendFile(path.resolve(__dirname, '../client/index.html'));
 });
+
+app.use('/itinerary', itineraryRouter);
 
 app.use('/api', apiRouter);
 
