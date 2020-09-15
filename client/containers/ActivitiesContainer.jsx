@@ -32,7 +32,7 @@ const ActivitiesContainer = (props) => {
   } = props;
 
   return (
-    <div>
+    <div id="large-activity-container">
       <ActivityFormModal
         show={showModal}
         onHide={() => setShowModal(false)}
@@ -43,9 +43,9 @@ const ActivitiesContainer = (props) => {
         handleFormInput={handleFormInput}
         handleFormSubmit={handleFormSubmit}
       />
-      <div>Activities Container</div>
-      <Button onClick={() => setShowModal(true)}>Add Activity</Button>
-      <div>
+      <h1>Activities: </h1>
+      <div id="all-activities">
+        <Button onClick={() => setShowModal(true)}>Add Activity</Button>
         <Activity />
       </div>
     </div>
