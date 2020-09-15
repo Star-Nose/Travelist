@@ -1,6 +1,6 @@
 // import our actiontypes from constants/actionsTypes;
-import * as types from '../constants/actionTypes';
 import axios from 'axios';
+import * as types from '../constants/actionTypes';
 
 const initialState = {
   count: 0,
@@ -29,6 +29,9 @@ const travelReducer = (state = initialState, action) => {
       const newTrips = state.trips.slice();
       newTrips.push(action.payload);
       console.log('inside travel reducer, state.trips:', state.trips);
+      axios.post('/itinerary', { location: 'Los Angeles' })
+        .then((res) => console.log(res))
+        .catch((err) => console.log('error inside of NEW_PLANS travel reducer', err));
       return {
         ...state,
         trips: newTrips,
