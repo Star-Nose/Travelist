@@ -1,7 +1,8 @@
+// axios helps to shorten fetch requests
+// remember to install redux thunk if you want to make fetch requests here
 import axios from 'axios';
 import * as types from '../constants/actionTypes';
 
-// eslint-disable-next-line import/prefer-default-export
 const addCount = () => ({
   type: types.ADD_COUNT,
   payload: null,
@@ -12,11 +13,13 @@ const submitSignupForm = (formInput) => ({
   payload: formInput,
 });
 
+// adds activity cards to the activity component container
 const getActivities = (tripId) => ({
   type: types.GET_ACTIVITIES,
   payload: tripId,
 });
 
+// adds itinerary cards to the sideBar container
 const newPlans = (plans) => ({
   type: types.NEW_PLANS,
   payload: plans,
@@ -52,22 +55,19 @@ const addActivity = (newActivity) => ({
   payload: newActivity,
 });
 
+// this action checks username and password with sql database before dispatching action to reducers
+// use redux thunk in order to make an asyncronous fetch
+// Below is the same as writing const validateLogin = (u, p ) => {
+// return function(dispatch) { ... }
+// }
 const validateLogin = (username, password) => (dispatch) => {
-  axios
-    .post('/api/user-validation', { username, password })
-    .then((response) =>
-      dispatch({
-        type: types.VALID_LOGIN,
-        payload: response.data,
-      })
-    )
+  axios.post('/api/user-validation', { username, password })
+    .then((response) => dispatch({
+      type: types.VALID_LOGIN,
+      payload: response.data,
+    }))
     .catch((err) => console.log('Error in SUBMIT_LOGIN Reducer', err));
 };
-
-const loginKeyDown = (e) => ({
-  type: types.LOGIN_KEYDOWN,
-  payload: e.keyCode,
-});
 
 export {
   addCount,
@@ -78,7 +78,6 @@ export {
   getActivities,
   newPlans,
   newLocationInput,
-  loginKeyDown,
   activityFormInput,
   activityFormSubmit,
   addActivity,

@@ -46,10 +46,6 @@ const formReducer = (state = initialState, action) => {
         password,
       };
 
-      // document
-      //   .querySelectorAll('.signup-field')
-      //   .forEach((field) => (field.value = ''));
-
       if (password !== confirmedPassword) {
         console.log('passwords dont match');
         return {
@@ -72,6 +68,7 @@ const formReducer = (state = initialState, action) => {
         },
       };
     }
+
     case types.SIGNUP_FORM_INPUT: {
       const { name, value } = action.payload;
 
@@ -86,7 +83,6 @@ const formReducer = (state = initialState, action) => {
 
     case types.LOGIN_INPUT: {
       const { id, value } = action.payload.target;
-      console.log('STATE VALUE', state.login);
       return {
         ...state,
         login: {
@@ -97,11 +93,9 @@ const formReducer = (state = initialState, action) => {
     }
 
     case types.VALID_LOGIN: {
-      console.log('VALID LOGIN', action.payload);
       const validated = action.payload;
       let { loginAttempts } = state.login;
       loginAttempts += 1;
-
       return {
         ...state,
         login: {
@@ -111,6 +105,7 @@ const formReducer = (state = initialState, action) => {
         },
       };
     }
+
     case types.NEW_LOCATION_INPUT: {
       const { value, name } = action.payload;
       return {
@@ -118,19 +113,6 @@ const formReducer = (state = initialState, action) => {
         newPlans: {
           ...state.newPlans,
           [name]: value,
-        },
-      };
-    }
-
-    case types.LOGIN_KEYDOWN: {
-      let enterKeyPressed = false;
-      console.log('ENTER KEY PRESSED', action.payload);
-      if (action.payload === 13) enterKeyPressed = true;
-      return {
-        ...state,
-        login: {
-          ...state.login,
-          enterKeyPressed,
         },
       };
     }

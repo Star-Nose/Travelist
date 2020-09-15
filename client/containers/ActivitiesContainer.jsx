@@ -54,10 +54,10 @@ const ActivitiesContainer = (props) => {
         {activities.map((el, i) => (
           <Activity
             key={`activity${i}`}
-            description={description}
-            notes={notes}
-            address={address}
-            link={link}
+            description={el.description}
+            notes={el.notes}
+            address={el.address}
+            link={el.link}
           />
         ))}
       </div>
