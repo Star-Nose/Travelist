@@ -23,7 +23,12 @@ const mapStateToProps = (state) => ({
 const SidebarContainer = (props) => {
   // get request to server (server will query db)
   const {
-    getActivities, addNewPlans, newLocationInput, country, newLocation, trips,
+    getActivities,
+    addNewPlans,
+    newLocationInput,
+    country,
+    newLocation,
+    trips,
   } = props;
   // loop through locations in db and and create <SidebarCard /> for each
   return (
@@ -40,8 +45,8 @@ const SidebarContainer = (props) => {
           key={`tripId${i}`}
           tripId={`tripId${i}`}
           getActivities={getActivities}
-          country={country}
-          location={newLocation}
+          country={trip.country}
+          location={trip.newLocation}
         />
       ))}
     </div>
