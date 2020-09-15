@@ -16,17 +16,17 @@ const mapStateToProps = (state) => ({
   count: state.trips.count,
 });
 
-// within main - nav container, side-bar container, activities container (3) 
+// within main - nav container, side-bar container, activities container (3)
 
 const MainContainer = (props) => {
   const { count, addCount } = props;
   return (
     <div>
       <NavContainer />
-        <div className="body-container">
-          <SidebarContainer />
-          <ActivitiesContainer />
-          </div>
+      <div className="body-container">
+        <SidebarContainer />
+        <ActivitiesContainer />
+      </div>
     </div>
   );
 };

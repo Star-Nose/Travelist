@@ -9,9 +9,9 @@ const SidebarCard = (props) => {
       onClick={() => getActivities(tripId)}
       className="side-bar-card"
     >
-      <label>Location: {location}  </label>
+      <label>Location: {location}</label>
       <br />
-      <label>Country: {country} </label>
+      <label>Country: {country}</label>
     </button>
   );
 };

@@ -20,6 +20,13 @@ const initialState = {
     newLocation: '',
     country: '',
   },
+  newActivity: {
+    description: '',
+    notes: '',
+    address: '',
+    link: '',
+    completed: false,
+  },
 };
 
 const formReducer = (state = initialState, action) => {
@@ -33,7 +40,10 @@ const formReducer = (state = initialState, action) => {
         confirmedPassword,
       } = action.payload;
       const inputToDB = {
-        firstName, email, username, password,
+        firstName,
+        email,
+        username,
+        password,
       };
 
       // document
@@ -120,6 +130,29 @@ const formReducer = (state = initialState, action) => {
         login: {
           ...state.login,
           enterKeyPressed,
+        },
+      };
+    }
+
+    case types.ACTIVITY_FORM_INPUT: {
+      const { name, value } = action.payload;
+
+      return {
+        ...state,
+        newActivity: {
+          ...state.newActivity,
+          [name]: value,
+        },
+      };
+    }
+
+    case types.SUBMIT_ACTIVITY_FORM: {
+      console.log(action.payload);
+      return {
+        ...state,
+        newActivity: {
+          ...state.newActivity,
+          ...action.payload,
         },
       };
     }
