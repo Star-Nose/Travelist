@@ -46,7 +46,7 @@ const ActivitiesContainer = (props) => {
       <h1>Activities: </h1>
       <div id="all-activities">
         <Button onClick={() => setShowModal(true)}>Add Activity</Button>
-        <Activity />
+        <Activity description={description} notes={notes} address={address} link={link} />
       </div>
     </div>
   );
