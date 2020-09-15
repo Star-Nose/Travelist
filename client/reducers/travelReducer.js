@@ -1,7 +1,10 @@
 // import our actiontypes from constants/actionsTypes;
 import axios from 'axios';
 import * as types from '../constants/actionTypes';
+// our initialState for this reducer needs some cleaning up. We have this one
+// and formReducer which are combined in the index.js file with the combineReducer method
 
+// note, because of the way we set up index.js, this state is accesssed w/ state.trips;
 const initialState = {
   count: 0,
   trips: [],
@@ -14,6 +17,9 @@ const travelReducer = (state = initialState, action) => {
       const count = state.count + 1;
       return { ...state, count };
     }
+    // this action was left incomplete, the idea was to get activities corresponding with 
+    // itineraries
+    // from the database
     case types.GET_ACTIVITIES: {
       const { payload } = action;
       // const { trips } = initialState;
@@ -25,7 +31,8 @@ const travelReducer = (state = initialState, action) => {
       console.log(payload);
       return { ...state };
     }
-    // this action will show or hide the modal inside of the Activities Container
+    // this action sends a request to our server. However, the router is unfinished,
+    // so this function is not hooked up to the database yet
     case types.NEW_PLANS: {
       const newTrips = state.trips.slice();
       newTrips.push(action.payload);
@@ -45,7 +52,6 @@ const travelReducer = (state = initialState, action) => {
     case types.ADD_ACTIVITIES: {
       const newActivities = state.activities.slice();
       newActivities.push(action.payload);
-      console.log(state.activities);
       return {
         ...state,
         activities: newActivities,

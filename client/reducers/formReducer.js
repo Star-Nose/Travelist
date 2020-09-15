@@ -1,6 +1,9 @@
 import axios from 'axios';
 import * as types from '../constants/actionTypes';
 
+// our form reducer is for all componenets in our codebase that have input fields. Here, each
+// input field is given a key value in state along with objects that represent data coming in
+// form the client
 const initialState = {
   signUp: {
     firstName: '',
@@ -45,11 +48,6 @@ const formReducer = (state = initialState, action) => {
         username,
         password,
       };
-
-      // document
-      //   .querySelectorAll('.signup-field')
-      //   .forEach((field) => (field.value = ''));
-
       if (password !== confirmedPassword) {
         console.log('passwords dont match');
         return {

@@ -19,9 +19,7 @@ const mapStateToProps = (state) => ({
   trips: state.trips.trips,
 });
 
-// long rectangle that renders cards based on
 const SidebarContainer = (props) => {
-  // get request to server (server will query db)
   const {
     getActivities,
     addNewPlans,
@@ -30,7 +28,7 @@ const SidebarContainer = (props) => {
     newLocation,
     trips,
   } = props;
-  // loop through locations in db and and create <SidebarCard /> for each
+
   return (
     <div className="side-bar">
       <h5 id="itineraries">Itineraries</h5>
@@ -40,6 +38,7 @@ const SidebarContainer = (props) => {
         location={newLocation}
         newLocationInput={newLocationInput}
       />
+      {/* this function iterates over an array in state and renders Sidebar Card components */}
       {trips.map((trip, i) => (
         <SidebarCard
           key={`tripId${i}`}
