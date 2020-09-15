@@ -25,6 +25,10 @@ module.exports = {
         target: 'http://localhost:3000/',
         secure: false,
       },
+      '/itinerary': {
+        target: 'http://localhost:3000/',
+        secure: false,
+      }
     },
   },
   module: {
