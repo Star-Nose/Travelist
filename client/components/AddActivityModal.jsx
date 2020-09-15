@@ -12,6 +12,7 @@ const AddActivityModal = ({
   link,
   handleFormInput,
   handleFormSubmit,
+  addActivity,
 }) => {
   const [inputValues, setInputValues] = useState([]);
 
@@ -25,6 +26,7 @@ const AddActivityModal = ({
           onSubmit={(e) => {
             e.preventDefault();
             handleFormSubmit({ description, notes, address, link });
+            addActivity({ description, notes, address, link });
           }}
         >
           <Form.Group controlId="activityDescription">
@@ -60,7 +62,12 @@ const AddActivityModal = ({
             />
           </Form.Group>
 
-          <Button variant="danger" type="submit" className="mt-4">
+          <Button
+            variant="danger"
+            type="submit"
+            className="mt-4"
+            onClick={() => onHide()}
+          >
             Add Activity
           </Button>
           <Button

@@ -47,6 +47,11 @@ const activityFormSubmit = (formInput) => ({
   payload: formInput,
 });
 
+const addActivity = (newActivity) => ({
+  type: types.ADD_ACTIVITIES,
+  payload: newActivity,
+});
+
 const validateLogin = (username, password) => (dispatch) => {
   axios
     .post('/api/user-validation', { username, password })
@@ -76,4 +81,5 @@ export {
   loginKeyDown,
   activityFormInput,
   activityFormSubmit,
+  addActivity,
 };
