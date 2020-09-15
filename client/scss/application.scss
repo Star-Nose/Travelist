@@ -1,4 +1,7 @@
 // add subsequent style sheet links to here 
+// this file allowed us to target different components and style them
+// modularly. Therefore, we could be working on different components
+// and style with minimal merge conflicts
 @import "~bootstrap/scss/bootstrap";
 @import "./sidebar.scss";
 @import "./main.scss";

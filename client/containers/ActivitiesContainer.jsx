@@ -23,6 +23,9 @@ const mapStateToProps = (state) => ({
 });
 
 const ActivitiesContainer = (props) => {
+  // note, this is the use of React Hooks below. Typically, we wouldn't use
+  // hooks in a redux application, because we want all state in the store.
+  // however, we chose to use a hook here for this one piece of the application
   const [showModal, setShowModal] = useState(false);
   const {
     description,

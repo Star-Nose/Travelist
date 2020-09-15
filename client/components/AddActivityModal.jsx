@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-
+// here, we are destructering the props object in the paramete itself
+// this would be the same thing as doing const { show, ... etc} = props
 const AddActivityModal = ({
   show,
   onHide,
@@ -14,6 +15,7 @@ const AddActivityModal = ({
   handleFormSubmit,
   addActivity,
 }) => {
+  // Note, React Hook used below
   const [inputValues, setInputValues] = useState([]);
 
   return (
