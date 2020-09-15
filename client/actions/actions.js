@@ -37,13 +37,25 @@ const loginInput = (formInput) => ({
   payload: formInput,
 });
 
+const activityFormInput = (formInput) => ({
+  type: types.ACTIVITY_FORM_INPUT,
+  payload: formInput,
+});
+
+const activityFormSubmit = (formInput) => ({
+  type: types.SUBMIT_ACTIVITY_FORM,
+  payload: formInput,
+});
+
 const validateLogin = (username, password) => (dispatch) => {
   axios
     .post('/api/user-validation', { username, password })
-    .then((response) => dispatch({
-      type: types.VALID_LOGIN,
-      payload: response.data,
-    }))
+    .then((response) =>
+      dispatch({
+        type: types.VALID_LOGIN,
+        payload: response.data,
+      })
+    )
     .catch((err) => console.log('Error in SUBMIT_LOGIN Reducer', err));
 };
 
@@ -62,4 +74,6 @@ export {
   newPlans,
   newLocationInput,
   loginKeyDown,
+  activityFormInput,
+  activityFormSubmit,
 };
