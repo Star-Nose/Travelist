@@ -1,5 +1,6 @@
 import React from 'react';
-
+// this is a good component to start with while trying to understand how
+// state is flowing in this application
 const SidebarCard = (props) => {
   const { tripId, location, country, getActivities } = props;
   return (

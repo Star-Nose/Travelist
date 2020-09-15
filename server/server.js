@@ -21,6 +21,7 @@ app.get('/', (req, res) => {
   res.status(200).sendFile(path.resolve(__dirname, '../client/index.html'));
 });
 
+// note, this route and router don't really do much. itenerary router is;
 app.use('/itinerary', itineraryRouter);
 
 app.use('/api', apiRouter);
